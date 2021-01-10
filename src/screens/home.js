@@ -4,7 +4,7 @@ import {Box,Text, Container} from '@chakra-ui/react';
 export class Home extends Component {
     render() {
         return (
-            <Box mt={120} >
+            <Box>
                 <Box bgColor="tomato" height="100px" width="100%">
                     <Text>Welcome to homescreen</Text>
                 </Box>
