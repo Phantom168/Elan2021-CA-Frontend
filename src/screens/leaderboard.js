@@ -4,7 +4,7 @@ import {Box, Flex, Center,Text,Heading,Table, Thead, Tbody, Tr, Th, Td, TableCap
 export class LeaderBoard extends Component {
     render() {
         return (
-            <Box>
+            <Box mt={25}>
                 <Center mb="25px"><Heading>LeaderBoard</Heading></Center>
                 <Container mt={75} maxW={['100%','80%']}>
                     <Table variant="simple">

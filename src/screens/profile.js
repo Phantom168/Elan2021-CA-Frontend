@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import {Box, Flex, Center,Text,Heading,Container,FormControl,
     FormLabel,
     FormErrorMessage,
-    FormHelperText,Input} from '@chakra-ui/react';
+    FormHelperText,Input,Button} from '@chakra-ui/react';
 
 export class Profile extends Component {
     render() {
         return (
-            <Box >
+            <Box mt={25} >
                 <Center><Heading>Profile</Heading></Center>
                 <Container mt={75} maxW={['100%','50%']}>
                     <FormControl m={5} id="name" isRequired>
@@ -39,6 +39,8 @@ export class Profile extends Component {
                         <FormLabel>FaceBook</FormLabel>
                         <Input defaultValue="brijaghav1" />
                     </FormControl>
+
+                    <Button m={5} colorScheme="teal" >Update</Button>
                 </Container>
             </Box>
         )
