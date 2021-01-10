@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class Header extends Component {
+export class Tasks extends Component {
     render() {
         return (
             <div>
@@ -10,4 +10,4 @@ export class Header extends Component {
     }
 }
 
-export default Header
+export default Tasks
