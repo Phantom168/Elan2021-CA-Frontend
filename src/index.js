@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {ChakraProvider} from '@chakra-ui/react';
+import {Auth0Provider} from '@auth0/auth0-react';
 
 ReactDOM.render(
-  <ChakraProvider>
-    <App/>
-  </ChakraProvider>,
+  <Auth0Provider
+    domain="phantom168.us.auth0.com"
+    clientId="0bA91Ra1cZ1Ek2mn0NC8JBYoCDBe6qaO"
+    redirectUri={window.location.origin}
+  >
+    <ChakraProvider>
+      <App/>
+    </ChakraProvider>
+  </Auth0Provider>
+  ,
   document.getElementById('root')
 );
 
