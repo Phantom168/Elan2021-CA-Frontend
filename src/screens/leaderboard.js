@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import { AppContext } from "../App";
 import { Redirect } from "react-router-dom";
+import { caportal } from "../constants";
 
 export class LeaderBoard extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ export class LeaderBoard extends Component {
 
     this.setState({ loading: true });
     axios
-      .get("http://127.0.0.1:8000/caportal/getLeaderBoardRecords/", {
+      .get(`${caportal}/getLeaderBoardRecords/`, {
         headers: {
           Authorization: `Token ${token}`,
         },
