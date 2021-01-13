@@ -16,6 +16,7 @@ import axios from "axios";
 import { AppContext } from "../App";
 import { Redirect } from "react-router-dom";
 import { caportal } from "../constants";
+import { caportal } from "../constants";
 
 const updateProfile = (state) => {
   const { name, phone, facebook, instagram, institute } = state;
@@ -71,7 +72,7 @@ export class Profile extends Component {
     // }
 
     axios
-      .get("http://127.0.0.1:8000/caportal/getMyAmbassadorProfile/", {
+      .get(`${caportal}/getMyAmbassadorProfile/`, {
         headers: {
           Authorization: `Token ${token}`,
         },
