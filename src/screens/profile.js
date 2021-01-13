@@ -16,7 +16,6 @@ import axios from "axios";
 import { AppContext } from "../App";
 import { Redirect } from "react-router-dom";
 import { caportal } from "../constants";
-import { caportal } from "../constants";
 
 const updateProfile = (state) => {
   const { name, phone, facebook, instagram, institute } = state;
