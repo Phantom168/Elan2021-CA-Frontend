@@ -1,2 +1,2 @@
-export const hostname = `http://127.0.0.1:8000`;
+export const hostname = `https://elan-ca-backend-2021.herokuapp.com`;
 export const caportal = `${hostname}/caportal`;
