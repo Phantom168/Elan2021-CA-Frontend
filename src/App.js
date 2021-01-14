@@ -15,6 +15,10 @@ class App extends Component {
         localStorage.getItem("ca_token") &&
         localStorage.getItem("ca_token") !== "",
       firstLogin: false,
+      token: null,
+      setToken: (val) => {
+        this.setState({ token: val });
+      },
       setFirstLogin: (val) => {
         this.setState({ firstLogin: val });
       },
@@ -28,6 +32,14 @@ class App extends Component {
       },
       logOut: () => {
         this.setState({ isLoggedIn: false });
+      },
+      isProfileComplete: false,
+      setProfileStatus: (val) => {
+        this.setState({ isProfileComplete: val });
+      },
+      currentTab: 1,
+      setCurrentTab: (val) => {
+        this.setState({ currentTab: val });
       },
     };
   }

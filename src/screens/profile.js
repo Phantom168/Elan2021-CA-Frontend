@@ -3,47 +3,41 @@ import {
   Box,
   Center,
   Heading,
-  Container,
   FormControl,
   FormLabel,
   FormHelperText,
   Input,
   Button,
   Text,
-  createStandaloneToast,
+
+  //createStandaloneToast,
+  Spinner,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  Flex,
+  Stack,
+  Container,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { AppContext } from "../App";
+import { withAuth0 } from "@auth0/auth0-react";
 import { Redirect } from "react-router-dom";
 import { caportal } from "../constants";
 
-const updateProfile = (state) => {
-  const { name, phone, facebook, instagram, institute } = state;
+//var flag=1;
 
-  const token = localStorage.getItem("ca_token");
-  axios
-    .post(
-      `${caportal}/updateMyAmbassadorProfile/`,
-      {
-        name,
-        phone,
-        facebook,
-        instagram,
-        institute,
-      },
-      {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      }
-    )
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-};
+// const updateProfile = (state,setState) => {
+
+// };
+
+// function setNameInContext(name,status){
+//   const contextVal = useContext(AppContext)
+//   contextVal.setName(name)
+//   console.log(contextVal.name)
+//   contextVal.setProfileStatus(status)
+// }
 
 export class Profile extends Component {
   constructor(props) {
@@ -56,36 +50,67 @@ export class Profile extends Component {
       facebook: "",
       instagram: "",
       institute: "",
+      score: 0,
       err_name: "",
       err_email: "",
       err_phone: "",
       err_facebook: "",
       err_instagram: "",
       err_institute: "",
+      loading: false,
+      error: ",",
     };
-
-    const token = localStorage.getItem("ca_token");
 
     // if(!token){
 
     // }
 
-    axios
-      .get(`${caportal}/getMyAmbassadorProfile/`, {
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      })
-      .then((res) => {
-        this.setState({
-          name: res.data.name,
-          email: res.data.email,
-          phone: res.data.phone,
-          instagram: res.data.instagram,
-          facebook: res.data.facebook,
-          institute: res.data.institute,
+    const { getAccessTokenSilently } = this.props.auth0;
+
+    (async () => {
+      try {
+        await getAccessTokenSilently().then((token) => {
+          axios
+            .post(`${caportal}/addNewAmbassador/`, {
+              access_token: token,
+            })
+            .then((res) => {
+              console.log(res);
+              if (res.status == 200) {
+                var currToken = res.data.token;
+                console.log(currToken);
+
+                axios
+                  .get(`${caportal}/getMyAmbassadorProfile/`, {
+                    headers: {
+                      Authorization: `Token ${currToken}`,
+                    },
+                  })
+                  .then((res) => {
+                    this.setState({
+                      name: res.data.name,
+                      email: res.data.email,
+                      phone: res.data.phone,
+                      instagram: res.data.instagram,
+                      facebook: res.data.facebook,
+                      institute: res.data.institute,
+                      score: res.data.score,
+                      loading: false,
+                    });
+
+                    console.log(this.state);
+                  });
+                //props.refreshFunc();
+              }
+            })
+            .catch((e) => {
+              console.error(e);
+            });
         });
-      });
+      } catch (e) {
+        console.error(e);
+      }
+    })();
   }
 
   updateProfileState = (e) => {
@@ -129,105 +154,198 @@ export class Profile extends Component {
   }
 
   render() {
-    const toast = createStandaloneToast();
+    //const toast = createStandaloneToast();
 
     return (
       <>
-        {console.log(this.state)}
-        <AppContext.Consumer>
-          {({ isLoggedIn, firstLogin }) => {
-            if (!isLoggedIn) return <Redirect to="/" />;
-            if (firstLogin) {
-              toast({
-                title: "Registered Successfully",
-                description: "Please Complete Your Profile to move forward",
-                status: "success",
-                isClosable: true,
-              });
-            }
-          }}
-        </AppContext.Consumer>
-        <Box mt={25}>
+        {this.state.loading && (
           <Center>
-            <Heading>Profile</Heading>
+            <Spinner size="xl" />
           </Center>
-          <Container mt={75} maxW={["100%", "50%"]}>
-            <FormControl m={5} id="name" isRequired>
-              <FormLabel>First name</FormLabel>
-              <Input
-                defaultValue={this.state.name}
-                onChange={this.updateProfileState}
-              />
-              <FormHelperText>
-                <Text color="red">{this.state.err_name}</Text>
-              </FormHelperText>
-            </FormControl>
+        )}
+        {!this.state.loading && (
+          <>
+            <AppContext.Consumer>
+              {({ isLoggedIn }) => {
+                if (!isLoggedIn) return <Redirect to="/" />;
+                // else if(!isProfileComplete){
 
-            <FormControl m={5} id="email">
-              <FormLabel>Email</FormLabel>
-              <Input disabled defaultValue={this.state.email} />
-            </FormControl>
-
-            <FormControl m={5} id="phone" isRequired>
-              <FormLabel>Phone</FormLabel>
-              <Input
-                defaultValue={this.state.phone}
-                onChange={this.updateProfileState}
-              />
-              <FormHelperText color="red">
-                <Text color="red">{this.state.err_phone}</Text>
-              </FormHelperText>
-            </FormControl>
-
-            <FormControl m={5} id="institute" isRequired>
-              <FormLabel>School/College</FormLabel>
-              <Input
-                defaultValue={this.state.institute}
-                onChange={this.updateProfileState}
-              />
-              <FormHelperText color="red">
-                <Text color="red" textColor="red">
-                  {this.state.err_institute}
-                </Text>
-              </FormHelperText>
-            </FormControl>
-
-            <FormControl m={5} id="instagram">
-              <FormLabel>Instagram</FormLabel>
-              <Input
-                defaultValue={this.state.instagram}
-                onChange={this.updateProfileState}
-              />
-              <FormHelperText color="red">
-                <Text color="red">{this.state.err_instagram}</Text>
-              </FormHelperText>
-            </FormControl>
-
-            <FormControl m={5} id="facebook">
-              <FormLabel>FaceBook</FormLabel>
-              <Input
-                defaultValue={this.state.facebook}
-                onChange={this.updateProfileState}
-              />
-              {/* <FormErrorMessage>{this.state.err_name}</FormErrorMessage> */}
-            </FormControl>
-
-            <Button
-              m={5}
-              colorScheme="teal"
-              onClick={() => {
-                if (this.checkProfile()) {
-                  updateProfile(this.state);
-                }
+                // }
               }}
-            >
-              Update
-            </Button>
-          </Container>
-        </Box>
+            </AppContext.Consumer>
+            <Box pt={25} bg={"gray.100"}>
+              <Center>
+                <Heading>Profile</Heading>
+              </Center>
+
+              <AppContext.Consumer>
+                {({ isProfileComplete }) => {
+                  if (!isProfileComplete) {
+                    return (
+                      <Container mt="20px">
+                        <Alert flexDirection="column" status="warning">
+                          <AlertIcon />
+                          <AlertTitle mr="2">Complete your Profile</AlertTitle>
+                          <AlertDescription>
+                            Fill in your details to complete your profile and
+                            move ahead
+                          </AlertDescription>
+                        </Alert>
+                      </Container>
+                    );
+                  }
+                }}
+              </AppContext.Consumer>
+
+              {/* <Container mt={75} maxW={["100%", "50%"]}> */}
+
+              <Flex minH={"100vh"} align={"center"} justify={"center"}>
+                <Stack
+                  spacing={8}
+                  mx={"auto"}
+                  w={"full"}
+                  maxW={"md"}
+                  py={12}
+                  px={6}
+                >
+                  <Box
+                    rounded={"lg"}
+                    bg={"white"}
+                    boxShadow={"lg"}
+                    p={{ base: 4, md: 8 }}
+                  >
+                    <Stack spacing={4}>
+                      <FormControl m={5} ml={"0"} id="points">
+                        <FormLabel>Points</FormLabel>
+                        <Input disabled defaultValue={this.state.score} />
+                      </FormControl>
+
+                      <FormControl m={5} ml={"0"} id="name" isRequired>
+                        <FormLabel>First name</FormLabel>
+                        <Input
+                          defaultValue={this.state.name}
+                          onChange={this.updateProfileState}
+                        />
+                        <FormHelperText>
+                          <Text color="red">{this.state.err_name}</Text>
+                        </FormHelperText>
+                      </FormControl>
+
+                      <FormControl m={5} id="email">
+                        <FormLabel>Email</FormLabel>
+                        <Input disabled defaultValue={this.state.email} />
+                      </FormControl>
+
+                      <FormControl m={5} id="phone" isRequired>
+                        <FormLabel>Phone</FormLabel>
+                        <Input
+                          defaultValue={this.state.phone}
+                          onChange={this.updateProfileState}
+                        />
+                        <FormHelperText color="red">
+                          <Text color="red">{this.state.err_phone}</Text>
+                        </FormHelperText>
+                      </FormControl>
+
+                      <FormControl m={5} id="institute" isRequired>
+                        <FormLabel>School/College</FormLabel>
+                        <Input
+                          defaultValue={this.state.institute}
+                          onChange={this.updateProfileState}
+                        />
+                        <FormHelperText color="red">
+                          <Text color="red" textColor="red">
+                            {this.state.err_institute}
+                          </Text>
+                        </FormHelperText>
+                      </FormControl>
+
+                      <FormControl m={5} id="instagram">
+                        <FormLabel>Instagram</FormLabel>
+                        <Input
+                          defaultValue={this.state.instagram}
+                          onChange={this.updateProfileState}
+                        />
+                        <FormHelperText color="red">
+                          <Text color="red">{this.state.err_instagram}</Text>
+                        </FormHelperText>
+                      </FormControl>
+
+                      <FormControl m={5} id="facebook">
+                        <FormLabel>FaceBook</FormLabel>
+                        <Input
+                          defaultValue={this.state.facebook}
+                          onChange={this.updateProfileState}
+                        />
+                        {/* <FormErrorMessage>{this.state.err_name}</FormErrorMessage> */}
+                      </FormControl>
+
+                      <Button
+                        m={5}
+                        colorScheme="teal"
+                        onClick={() => {
+                          if (this.checkProfile()) {
+                            const {
+                              name,
+                              phone,
+                              facebook,
+                              instagram,
+                              institute,
+                            } = this.state;
+
+                            const token = localStorage.getItem("ca_token");
+                            this.setState({ loading: true });
+                            axios
+                              .post(
+                                `${caportal}/updateMyAmbassadorProfile/`,
+                                {
+                                  name,
+                                  phone,
+                                  facebook,
+                                  instagram,
+                                  institute,
+                                },
+                                {
+                                  headers: {
+                                    Authorization: `Token ${token}`,
+                                  },
+                                }
+                              )
+                              .then((res) => {
+                                console.log(res);
+                                this.setState({
+                                  loading: false,
+                                });
+
+                                // <AppContext.Consumer>
+                                //   {({setProfileStatus,setName,name})=>{
+                                //     setProfileStatus(res.data.is_profile_complete)
+                                //     setName(res.data.name)
+                                //     console.log(name)
+                                //   }}
+                                // </AppContext.Consumer>
+                                window.location.reload();
+                              })
+                              .catch((err) => {
+                                console.error(err);
+                              });
+                          }
+                        }}
+                      >
+                        Update
+                      </Button>
+                    </Stack>
+                  </Box>
+                </Stack>
+              </Flex>
+
+              {/* </Container> */}
+            </Box>
+          </>
+        )}
       </>
     );
   }
 }
 
-export default Profile;
+export default withAuth0(Profile);
