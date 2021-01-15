@@ -324,7 +324,17 @@ export class Profile extends Component {
                                 //     console.log(name)
                                 //   }}
                                 // </AppContext.Consumer>
-                                window.location.reload();
+                                //window.location.reload();
+                                return (
+                                  <AppContext.Consumer>
+                                    {({ setProfileStatus, setName }) => {
+                                      setProfileStatus(
+                                        res.data.is_profile_complete
+                                      );
+                                      setName(res.data.name);
+                                    }}
+                                  </AppContext.Consumer>
+                                );
                               })
                               .catch((err) => {
                                 console.error(err);
