@@ -255,7 +255,7 @@ export class Header extends Component {
                             variant="ghost"
                             className="nav"
                           >
-                            Profile
+                            Comments
                           </Button>
                         </>
                       );
