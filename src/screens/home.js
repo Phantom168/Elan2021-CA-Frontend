@@ -330,7 +330,7 @@ export class Home extends Component {
               </ListItem>
               <ListItem>
                 <ListIcon as={FaAward} color="yellow.600" /> Free ELAN & ηVision
-                merchandise for top 20 CAs.{" "}
+                merchandise for top CAs.{" "}
               </ListItem>
               <ListItem>
                 <ListIcon as={FaAward} color="yellow.600" />
