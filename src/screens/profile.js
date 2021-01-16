@@ -39,6 +39,27 @@ import { caportal } from "../constants";
 //   contextVal.setProfileStatus(status)
 // }
 
+export function withUserContext(Component) {
+  return function WrappedWithContext(props) {
+    return (
+      <AppContext.Consumer>
+        {({ token, name, isProfileComplete, setProfileStatus, setName }) => {
+          return (
+            <Component
+              {...props}
+              token={token}
+              name={name}
+              setProfileStatus={setProfileStatus}
+              setName={setName}
+              isProfileComplete={isProfileComplete}
+            />
+          );
+        }}
+      </AppContext.Consumer>
+    );
+  };
+}
+
 export class Profile extends Component {
   constructor(props) {
     super(props);
@@ -66,6 +87,7 @@ export class Profile extends Component {
     // }
 
     const { getAccessTokenSilently } = this.props.auth0;
+    console.log(this.props);
 
     (async () => {
       try {
@@ -116,6 +138,13 @@ export class Profile extends Component {
   updateProfileState = (e) => {
     this.setState({ [e.target.id]: e.target.value });
   };
+
+  // updateGlobalProperties(name,status){
+  //   console.log(AppContext._currentValue);
+  //   const contextVal = useContext(AppContext);
+  //   contextVal.setProfileStatus(status);
+  //   contextVal.setName(name);
+  // }
 
   checkProfile() {
     const { name, phone, instagram, facebook, institute } = this.state;
@@ -325,16 +354,10 @@ export class Profile extends Component {
                                 //   }}
                                 // </AppContext.Consumer>
                                 //window.location.reload();
-                                return (
-                                  <AppContext.Consumer>
-                                    {({ setProfileStatus, setName }) => {
-                                      setProfileStatus(
-                                        res.data.is_profile_complete
-                                      );
-                                      setName(res.data.name);
-                                    }}
-                                  </AppContext.Consumer>
+                                this.props.setProfileStatus(
+                                  res.data.is_profile_complete
                                 );
+                                this.props.setName(res.data.name);
                               })
                               .catch((err) => {
                                 console.error(err);
@@ -358,4 +381,4 @@ export class Profile extends Component {
   }
 }
 
-export default withAuth0(Profile);
+export default withUserContext(withAuth0(Profile));

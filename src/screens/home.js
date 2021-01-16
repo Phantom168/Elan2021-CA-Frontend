@@ -330,7 +330,7 @@ export class Home extends Component {
               </ListItem>
               <ListItem>
                 <ListIcon as={FaAward} color="yellow.600" /> Free ELAN & ηVision
-                merchandise for top 20 CAs.{" "}
+                merchandise for top CAs.{" "}
               </ListItem>
               <ListItem>
                 <ListIcon as={FaAward} color="yellow.600" />
@@ -339,10 +339,6 @@ export class Home extends Component {
               <ListItem>
                 <ListIcon as={FaAward} color="yellow.600" />
                 Free participation in events and workshops.{" "}
-              </ListItem>
-              <ListItem>
-                <ListIcon as={FaAward} color="yellow.600" /> Internship
-                opportunities for top performing CAs.{" "}
               </ListItem>
               <ListItem>
                 <ListIcon as={FaAward} color="yellow.600" /> Chance to interact

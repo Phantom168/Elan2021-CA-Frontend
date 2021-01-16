@@ -43,14 +43,15 @@ export class Comments extends Component {
              comment_body:'',
              replied_to:'',
              modalOpen:false,
-             btnDisable:false
+             btnDisable:false,
+             token:null,
         }
 
 
         const {
             getAccessTokenSilently,
           } = this.props.auth0;
-        
+        var tokenFrom = null;
         
             (async () => {
               try {
@@ -63,9 +64,9 @@ export class Comments extends Component {
                       if (res.status == 200) {
                         var currToken = res.data.token
                           console.log(currToken)
-        
+                        
                           
-                          this.setState({loading:true})
+                          this.setState({loading:true,token:currToken})
                           axios.get(`${caportal}/getAllComments/`,{
                               headers:{
                                   Authorization:`Token ${currToken}`
@@ -115,9 +116,28 @@ export class Comments extends Component {
             if(statusTextEl)
                 statusTextEl.innerText = "Your Comment was Submitted Successfully"
             this.setState({loading:false});
+            (async () => {
+                console.log(this.state.token)
+                this.setState({loading:true})
+                axios.get(`${caportal}/getAllComments/`,{
+                    headers:{
+                        Authorization:`Token ${this.state.token}`
+                    }
+                }).then(res=>{
+                    this.setState({loading:false,
+                    data:res.data});
+                    console.log(res.data)
+                }).catch(err=>{
+                    this.setState({loading:false,error:err})
+                })
+
+              })();
             setTimeout(()=>{
                 this.closeModal()
-            },2000);
+            },1000);
+
+            
+  
             
         }).catch(err=>{
             if(statusTextEl)
@@ -125,7 +145,7 @@ export class Comments extends Component {
             this.setState({loading:false,error:err})
             setTimeout(()=>{
                 this.closeModal()
-            },2000);
+            },1000);
             
         })
     }
