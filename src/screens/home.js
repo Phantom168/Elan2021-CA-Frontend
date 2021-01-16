@@ -341,10 +341,6 @@ export class Home extends Component {
                 Free participation in events and workshops.{" "}
               </ListItem>
               <ListItem>
-                <ListIcon as={FaAward} color="yellow.600" /> Internship
-                opportunities for top performing CAs.{" "}
-              </ListItem>
-              <ListItem>
                 <ListIcon as={FaAward} color="yellow.600" /> Chance to interact
                 with Celebrities during the fest.{" "}
               </ListItem>
