@@ -341,8 +341,8 @@ export class Home extends Component {
                 Free participation in events and workshops.{" "}
               </ListItem>
               <ListItem>
-                <ListIcon as={FaAward} color="yellow.600" /> Chance to interact
-                with Celebrities during the fest.{" "}
+                <ListIcon as={FaAward} color="yellow.600" />
+                Cash prizes will be awarded to top CAs.{" "}
               </ListItem>
               <ListItem>
                 <ListIcon as={FaAward} color="yellow.600" /> Recognition on our
