@@ -223,7 +223,7 @@ export class Home extends Component {
                             as={FaArrowAltCircleRight}
                             color="green.500"
                           />{" "}
-                          You Diamond - 26 to 45{" "}
+                          Diamond - 26 to 45{" "}
                         </ListItem>
                         <ListItem>
                           <ListIcon
