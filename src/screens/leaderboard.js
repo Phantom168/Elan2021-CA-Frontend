@@ -36,7 +36,7 @@ export class LeaderBoard extends Component {
   }
 
   getTier(rank) {
-    if (rank < 5) {
+    if (rank < 25) {
       return (
         <Badge
           bgGradient="linear(to-r, blue, purple)"
@@ -46,7 +46,7 @@ export class LeaderBoard extends Component {
           Elite
         </Badge>
       );
-    } else if (rank < 15) {
+    } else if (rank < 45) {
       return (
         <Badge
           bgGradient="linear(to-r,yellow.200,gray,red.100,,gray,blue.100)"
@@ -56,7 +56,7 @@ export class LeaderBoard extends Component {
           Diamond
         </Badge>
       );
-    } else if (rank < 30) {
+    } else if (rank < 105) {
       return (
         <Badge
           bgGradient="linear(to-r,gray.100, silver, gray.400)"
@@ -65,13 +65,13 @@ export class LeaderBoard extends Component {
           Platinum
         </Badge>
       );
-    } else if (rank < 50) {
+    } else if (rank < 225) {
       return (
         <Badge bgColor="gold" color="black" variant="outline">
           Gold
         </Badge>
       );
-    } else if (rank < 175) {
+    } else if (rank < 385) {
       return (
         <Badge bgColor="silver" color="black" variant="outline">
           Silver
