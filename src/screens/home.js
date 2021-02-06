@@ -88,38 +88,40 @@ export class Home extends Component {
                         </ListItem>
                         <ListItem>
                           <ListIcon as={MdCheckCircle} color="green.500" />
-                          Organisers will soon make a WhatsApp group with the
-                          contact number you share with us and will keep you
-                          informed of all further tasks.
+                          Join the WhatsApp group using the link which is sent
+                          through the email.
                         </ListItem>
                         <ListItem>
                           <ListIcon as={MdCheckCircle} color="green.500" />
-                          The proofs of tasks completed should be sent to the
-                          organiser that contacts you.
+                          You will be updated regarding the tasks and other
+                          information by our Team in the WhatsApp group
                         </ListItem>
                         <ListItem>
                           <ListIcon as={MdCheckCircle} color="green.500" />
-                          To submit proof of a task completed, you will be
-                          required to send a screenshot of the post/story after
-                          a minimum of 20 hours of posting (on Instagram, a
-                          screenshot from the story archives), with the number
-                          of views/likes/comments clearly visible.
+                          After completing any task a screenshot of the post
+                          /story has to be sent in WhatsApp as the proof.
+                        </ListItem>
+                        <ListItem>
+                          <ListIcon as={MdCheckCircle} color="green.500" />
+                          Screenshot has to be taken after a minimum of 20 hours
+                          of posting.
+                        </ListItem>
+                        <ListItem>
+                          <ListIcon as={MdCheckCircle} color="green.500" />
+                          CAs must provide their ideas for publicising ELAN &
+                          Nvision and its events during the discussions which
+                          will be held by our team
                         </ListItem>
                         <ListItem>
                           <ListIcon as={MdCheckCircle} color="green.500" />
                           Additional points may be allotted based on the
-                          engagement your story/post receives.
+                          engagement your story/post receives and your
+                          performance.
                         </ListItem>
                         <ListItem>
                           <ListIcon as={MdCheckCircle} color="green.500" />
                           Separate tasks will be given in case of any tie
                           situation.
-                        </ListItem>
-                        <ListItem>
-                          <ListIcon as={MdCheckCircle} color="green.500" />
-                          Feel free to communicate any ideas you have for
-                          publicising ELAN &amp; Nvision and it&apos;s events
-                          with the organisers.
                         </ListItem>
                       </List>
                       <br />
@@ -179,17 +181,20 @@ export class Home extends Component {
                             <Tr>
                               <Td>7</Td>
                               <Td>Whatsapp Group Share</Td>
-                              <Td isNumeric>10 (Per Group)</Td>
+                              <Td>10 (Per Group)</Td>
                             </Tr>
                             <Tr>
                               <Td>8</Td>
-                              <Td>Bringing Participants for events </Td>
-                              <Td isNumeric>40 (Per Participant)</Td>
+                              <Td>
+                                Bringing Participants for Culti &amp; Techy
+                                events{" "}
+                              </Td>
+                              <Td>40 (Per Participant)</Td>
                             </Tr>
                             <Tr>
                               <Td>9</Td>
-                              <Td>Bringing more followers</Td>
-                              <Td isNumeric>3 (Per Follower)</Td>
+                              <Td> Bringing Registrations for Workshops</Td>
+                              <Td>40 ( per registration)</Td>
                             </Tr>
                           </Tbody>
                         </Table>
@@ -211,42 +216,42 @@ export class Home extends Component {
                             as={FaArrowAltCircleRight}
                             color="green.500"
                           />
-                          Elite - 1 to 5{" "}
+                          Elite - 1 to 25{" "}
                         </ListItem>
                         <ListItem>
                           <ListIcon
                             as={FaArrowAltCircleRight}
                             color="green.500"
                           />{" "}
-                          You Diamond - 6 to 15{" "}
+                          You Diamond - 26 to 45{" "}
                         </ListItem>
                         <ListItem>
                           <ListIcon
                             as={FaArrowAltCircleRight}
                             color="green.500"
                           />
-                          Platinum - 16 to 30{" "}
+                          Platinum - 46 to 105{" "}
                         </ListItem>
                         <ListItem>
                           <ListIcon
                             as={FaArrowAltCircleRight}
                             color="green.500"
                           />
-                          Gold - 31 to 50
+                          Gold - 106 to 225
                         </ListItem>
                         <ListItem>
                           <ListIcon
                             as={FaArrowAltCircleRight}
                             color="green.500"
                           />
-                          Silver - 51 to 75
+                          Silver - 226 to 385
                         </ListItem>
                         <ListItem>
                           <ListIcon
                             as={FaArrowAltCircleRight}
                             color="green.500"
                           />
-                          Broze - 75 and above
+                          Broze - 385 and above
                         </ListItem>
                       </List>
                       <br />
@@ -325,12 +330,16 @@ export class Home extends Component {
             </Heading>
             <List>
               <ListItem>
-                <ListIcon as={FaAward} color="yellow.600" /> Certificates from
-                ELAN & ηvision 2021{" "}
+                <ListIcon as={FaAward} color="yellow.600" />
+                LoRs (Letter of Recommendation) to top 25 CAs{" "}
               </ListItem>
               <ListItem>
-                <ListIcon as={FaAward} color="yellow.600" /> Free ELAN & ηVision
-                merchandise for top CAs.{" "}
+                <ListIcon as={FaAward} color="yellow.600" />
+                Certificates from ELAN & ηvision 2021{" "}
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaAward} color="yellow.600" />
+                Free ELAN & ηVision merchandise for top 20{" "}
               </ListItem>
               <ListItem>
                 <ListIcon as={FaAward} color="yellow.600" />
@@ -345,8 +354,8 @@ export class Home extends Component {
                 Cash prizes will be awarded to top CAs.{" "}
               </ListItem>
               <ListItem>
-                <ListIcon as={FaAward} color="yellow.600" /> Recognition on our
-                social media platforms and official website{" "}
+                <ListIcon as={FaAward} color="yellow.600" />
+                Recognition on our social media platforms and official website{" "}
               </ListItem>
             </List>
 
@@ -361,8 +370,8 @@ export class Home extends Component {
                 fests in the city. Looks pretty darn good on a resumè.{" "}
               </ListItem>
               <ListItem>
-                <ListIcon as={FaArrowAltCircleRight} color="green.500" /> You
-                build fantastic networks as an Ambassador, as you have the
+                <ListIcon as={FaArrowAltCircleRight} color="green.500" />
+                You build fantastic networks as an Ambassador, as you have the
                 opportunity to work with people from all over the country.{" "}
               </ListItem>
               <ListItem>
