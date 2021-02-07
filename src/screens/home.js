@@ -251,7 +251,7 @@ export class Home extends Component {
                             as={FaArrowAltCircleRight}
                             color="green.500"
                           />
-                          Broze - 385 and above
+                          Broze - 386 and above
                         </ListItem>
                       </List>
                       <br />

@@ -80,7 +80,7 @@ export class LeaderBoard extends Component {
     } else {
       return (
         <Badge bgColor="yellow.700" variant="outline" color="white">
-          Broze
+          Bronze
         </Badge>
       );
     }
