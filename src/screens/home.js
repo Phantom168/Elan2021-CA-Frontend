@@ -222,7 +222,7 @@ export class Home extends Component {
                           <ListIcon
                             as={FaArrowAltCircleRight}
                             color="green.500"
-                          />{" "}
+                          />
                           Diamond - 26 to 45{" "}
                         </ListItem>
                         <ListItem>
@@ -330,16 +330,20 @@ export class Home extends Component {
             </Heading>
             <List>
               <ListItem>
-                <ListIcon as={FaAward} color="yellow.600" />
-                LoRs (Letter of Recommendation) to top 25 CAs{" "}
+                <ListIcon as={FaAward} color="yellow.600" /> One-on-one free
+                study abroad counseling sessions by Yocket for top 25 CAs{" "}
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaAward} color="yellow.600" /> Direct Internship
+                opportunities for top 25 CAs by Yocket{" "}
+              </ListItem>
+              <ListItem>
+                <ListIcon as={FaAward} color="yellow.600" /> Certificates from
+                ELAN &amp; ηvision 2021{" "}
               </ListItem>
               <ListItem>
                 <ListIcon as={FaAward} color="yellow.600" />
-                Certificates from ELAN & ηvision 2021{" "}
-              </ListItem>
-              <ListItem>
-                <ListIcon as={FaAward} color="yellow.600" />
-                Free ELAN & ηVision merchandise for top 20{" "}
+                Free ELAN &amp; ηVision merchandise for top 20{" "}
               </ListItem>
               <ListItem>
                 <ListIcon as={FaAward} color="yellow.600" />
